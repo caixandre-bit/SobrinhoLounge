@@ -24,113 +24,191 @@
             background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(236, 72, 153, 0.1);
-            transition: all 0.3s ease;
-        }
-        .menu-card:hover {
-            border-color: rgba(236, 72, 153, 0.5);
-            box-shadow: 0 0 15px rgba(236, 72, 153, 0.1);
-            transform: translateY(-2px);
         }
         .tab-active {
             border-bottom: 2px solid #ec4899;
             color: #ec4899;
             text-shadow: 0 0 10px rgba(236, 72, 153, 0.4);
         }
+        /* Oculta a barra de rolagem na navegação horizontal, mas mantém a função */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .item-row {
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+        }
+        .item-row:last-child {
+            border-bottom: none;
+        }
     </style>
 </head>
 <body class="min-h-screen pb-20">
 
     <!-- Header / Hero -->
-    <header class="relative h-72 flex items-center justify-center overflow-hidden">
+    <header class="relative h-64 flex items-center justify-center overflow-hidden">
         <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/70 to-[#050505] z-10"></div>
         <img src="https://images.unsplash.com/photo-1566737236500-c8ac43014a67?auto=format&fit=crop&q=80&w=1000" alt="Neon Lounge Background" class="absolute inset-0 w-full h-full object-cover">
         <div class="relative z-20 text-center px-4">
-            <h1 class="text-5xl font-heading font-black neon-gradient mb-3 tracking-tight">SOBRINHO LOUNGE</h1>
+            <h1 class="text-5xl font-heading font-black neon-gradient mb-2 tracking-tight">SOBRINHO LOUNGE</h1>
             <p class="text-xs font-semibold tracking-[0.4em] uppercase text-fuchsia-400">Drinks • Hookah • Vibes</p>
         </div>
     </header>
 
-    <!-- Navigation Tabs -->
-    <nav class="sticky top-0 z-30 bg-[#0a0a0a]/90 backdrop-blur-md border-b border-white/10">
-        <div class="flex justify-around items-center max-w-md mx-auto">
-            <button onclick="showCategory('drinks')" id="tab-drinks" class="py-4 px-2 text-sm font-semibold uppercase tracking-wider tab-active transition-all">Drinks</button>
-            <button onclick="showCategory('comidas')" id="tab-comidas" class="py-4 px-2 text-sm font-semibold uppercase tracking-wider text-gray-500 transition-all">Porções</button>
-            <button onclick="showCategory('narguilé')" id="tab-narguilé" class="py-4 px-2 text-sm font-semibold uppercase tracking-wider text-gray-500 transition-all">Narguilé</button>
+    <!-- Navigation Tabs (Scrollável horizontalmente) -->
+    <nav class="sticky top-0 z-30 bg-[#050505]/95 backdrop-blur-md border-b border-white/10">
+        <div class="flex overflow-x-auto no-scrollbar max-w-2xl mx-auto px-2">
+            <button onclick="showCategory('cervejas')" id="tab-cervejas" class="py-4 px-4 text-sm font-semibold uppercase tracking-wider tab-active transition-all whitespace-nowrap">Cervejas</button>
+            <button onclick="showCategory('doses')" id="tab-doses" class="py-4 px-4 text-sm font-semibold uppercase tracking-wider text-gray-500 transition-all whitespace-nowrap">Doses</button>
+            <button onclick="showCategory('combos')" id="tab-combos" class="py-4 px-4 text-sm font-semibold uppercase tracking-wider text-gray-500 transition-all whitespace-nowrap">Combos</button>
+            <button onclick="showCategory('semalcool')" id="tab-semalcool" class="py-4 px-4 text-sm font-semibold uppercase tracking-wider text-gray-500 transition-all whitespace-nowrap">Sem Álcool</button>
+            <button onclick="showCategory('narguile')" id="tab-narguile" class="py-4 px-4 text-sm font-semibold uppercase tracking-wider text-gray-500 transition-all whitespace-nowrap">Narguilé</button>
         </div>
     </nav>
 
     <!-- Main Content -->
     <main class="max-w-2xl mx-auto px-4 mt-8">
         
-        <!-- Categoria: Drinks -->
-        <section id="cat-drinks" class="category-content">
-            <h2 class="text-2xl font-heading font-bold uppercase tracking-wider mb-6 text-center neon-gradient">Coquetéis & Bebidas</h2>
-            <div class="grid gap-4">
-                <!-- Item -->
-                <div class="menu-card p-4 rounded-xl flex justify-between items-center">
-                    <div class="flex-1">
-                        <h3 class="font-semibold text-white">Gin Tônica Premium</h3>
-                        <p class="text-xs text-gray-400 leading-relaxed">Gin importado, tônica premium, especiarias e frutas cítricas.</p>
-                    </div>
-                    <div class="ml-4 font-bold text-pink-500">R$ --,--</div>
+        <!-- Categoria: Cervejas e Variados -->
+        <section id="cat-cervejas" class="category-content">
+            <h2 class="text-2xl font-heading font-bold uppercase tracking-wider mb-6 text-center neon-gradient">Cervejas & Variados</h2>
+            
+            <div class="menu-card p-5 rounded-xl mb-6 shadow-lg">
+                <h3 class="text-lg font-bold text-white mb-3 uppercase tracking-wide border-b border-pink-500/30 pb-2">Cervejas</h3>
+                <div class="flex flex-col">
+                    <div class="flex justify-between items-center py-3 item-row"><span class="text-gray-300">Heineken 600ml</span><span class="font-bold text-pink-500">R$ 20,00</span></div>
+                    <div class="flex justify-between items-center py-3 item-row"><span class="text-gray-300">Heineken 330ml</span><span class="font-bold text-pink-500">R$ 15,00</span></div>
+                    <div class="flex justify-between items-center py-3 item-row"><span class="text-gray-300">Heineken 290ml</span><span class="font-bold text-pink-500">R$ 12,00</span></div>
+                    <div class="flex justify-between items-center py-3 item-row"><span class="text-gray-300">Heineken Lata</span><span class="font-bold text-pink-500">R$ 10,00</span></div>
+                    <div class="flex justify-between items-center py-3 item-row"><span class="text-gray-300">Heineken Zero</span><span class="font-bold text-pink-500">R$ 15,00</span></div>
+                    <div class="flex justify-between items-center py-3 item-row"><span class="text-gray-300">Corona Long</span><span class="font-bold text-pink-500">R$ 15,00</span></div>
+                    <div class="flex justify-between items-center py-3 item-row"><span class="text-gray-300">Corona Long Zero</span><span class="font-bold text-pink-500">R$ 12,00</span></div>
+                    <div class="flex justify-between items-center py-3 item-row"><span class="text-gray-300">Budweiser Long</span><span class="font-bold text-pink-500">R$ 12,00</span></div>
+                    <div class="flex justify-between items-center py-3 item-row"><span class="text-gray-300">Original 600ml</span><span class="font-bold text-pink-500">R$ 15,00</span></div>
+                    <div class="flex justify-between items-center py-3 item-row"><span class="text-gray-300">Original Lata</span><span class="font-bold text-pink-500">R$ 8,00</span></div>
+                    <div class="flex justify-between items-center py-3 item-row"><span class="text-gray-300">Amstel 600ml</span><span class="font-bold text-pink-500">R$ 15,00</span></div>
+                    <div class="flex justify-between items-center py-3 item-row"><span class="text-gray-300">Brahma PuroMalte 600ml</span><span class="font-bold text-pink-500">R$ 12,00</span></div>
+                    <div class="flex justify-between items-center py-3 item-row"><span class="text-gray-300">Brahma Chopp 600ml</span><span class="font-bold text-pink-500">R$ 12,00</span></div>
+                    <div class="flex justify-between items-center py-3 item-row"><span class="text-gray-300">Skol 600ml</span><span class="font-bold text-pink-500">R$ 12,00</span></div>
+                    <div class="flex justify-between items-center py-3 item-row"><span class="text-gray-300">Skol Lata</span><span class="font-bold text-pink-500">R$ 6,00</span></div>
                 </div>
-                <!-- Item -->
-                <div class="menu-card p-4 rounded-xl flex justify-between items-center">
-                    <div class="flex-1">
-                        <h3 class="font-semibold text-white">Moscow Mule</h3>
-                        <p class="text-xs text-gray-400 leading-relaxed">Vodka, suco de limão, xarope de açúcar e espuma de gengibre artesanal.</p>
-                    </div>
-                    <div class="ml-4 font-bold text-pink-500">R$ --,--</div>
-                </div>
-                <!-- Item -->
-                <div class="menu-card p-4 rounded-xl flex justify-between items-center">
-                    <div class="flex-1">
-                        <h3 class="font-semibold text-white">Caipirinha de Morango</h3>
-                        <p class="text-xs text-gray-400 leading-relaxed">Cachaça artesanal ou Vodka, morangos frescos e açúcar orgânico.</p>
-                    </div>
-                    <div class="ml-4 font-bold text-pink-500">R$ --,--</div>
+            </div>
+
+            <div class="menu-card p-5 rounded-xl shadow-lg">
+                <h3 class="text-lg font-bold text-white mb-3 uppercase tracking-wide border-b border-pink-500/30 pb-2">Variados</h3>
+                <div class="flex flex-col">
+                    <div class="flex justify-between items-center py-3 item-row"><span class="text-gray-300">Draft</span><span class="font-bold text-pink-500">R$ 20,00</span></div>
+                    <div class="flex justify-between items-center py-3 item-row"><span class="text-gray-300">Smirnoff Ice</span><span class="font-bold text-pink-500">R$ 15,00</span></div>
+                    <div class="flex justify-between items-center py-3 item-row"><span class="text-gray-300">Skol Beats</span><span class="font-bold text-pink-500">R$ 15,00</span></div>
+                    <div class="flex justify-between items-center py-3 item-row"><span class="text-gray-300">51 Ice</span><span class="font-bold text-pink-500">R$ --,--</span></div>
                 </div>
             </div>
         </section>
 
-        <!-- Categoria: Comidas (Hidden by default) -->
-        <section id="cat-comidas" class="category-content hidden">
-            <h2 class="text-2xl font-heading font-bold uppercase tracking-wider mb-6 text-center neon-gradient">Petiscos & Porções</h2>
-            <div class="grid gap-4">
-                <div class="menu-card p-4 rounded-xl flex justify-between items-center">
-                    <div class="flex-1">
-                        <h3 class="font-semibold text-white">Batata Rústica Sobrinho</h3>
-                        <p class="text-xs text-gray-400 leading-relaxed">Com alecrim, sal grosso e acompanhada de maionese da casa.</p>
-                    </div>
-                    <div class="ml-4 font-bold text-pink-500">R$ --,--</div>
-                </div>
-                <div class="menu-card p-4 rounded-xl flex justify-between items-center">
-                    <div class="flex-1">
-                        <h3 class="font-semibold text-white">Mix de Mini Pastéis</h3>
-                        <p class="text-xs text-gray-400 leading-relaxed">10 unidades: Carne, Queijo e Palmito.</p>
-                    </div>
-                    <div class="ml-4 font-bold text-pink-500">R$ --,--</div>
+        <!-- Categoria: Doses -->
+        <section id="cat-doses" class="category-content hidden">
+            <h2 class="text-2xl font-heading font-bold uppercase tracking-wider mb-6 text-center neon-gradient">Doses & Drinks</h2>
+            
+            <div class="menu-card p-5 rounded-xl shadow-lg">
+                <div class="flex flex-col">
+                    <div class="flex justify-between items-center py-3 item-row"><span class="text-gray-300">Jack Daniel’s Apple c/ Red Bull</span><span class="font-bold text-pink-500">R$ 45,00</span></div>
+                    <div class="flex justify-between items-center py-3 item-row"><span class="text-gray-300">Jack Daniel’s Honey c/ Red Bull</span><span class="font-bold text-pink-500">R$ 45,00</span></div>
+                    <div class="flex justify-between items-center py-3 item-row"><span class="text-gray-300">Jack Daniel’s Fire c/ Red Bull</span><span class="font-bold text-pink-500">R$ 45,00</span></div>
+                    <div class="flex justify-between items-center py-3 item-row"><span class="text-gray-300">Jack Daniel’s c/ Red Bull</span><span class="font-bold text-pink-500">R$ 40,00</span></div>
+                    <div class="flex justify-between items-center py-3 item-row"><span class="text-gray-300">Tanqueray c/ Red Bull</span><span class="font-bold text-pink-500">R$ 40,00</span></div>
+                    <div class="flex justify-between items-center py-3 item-row"><span class="text-gray-300">Old Parr c/ Red Bull</span><span class="font-bold text-pink-500">R$ 40,00</span></div>
+                    <div class="flex justify-between items-center py-3 item-row"><span class="text-gray-300">Beefeater c/ Red Bull</span><span class="font-bold text-pink-500">R$ 35,00</span></div>
+                    <div class="flex justify-between items-center py-3 item-row"><span class="text-gray-300">Ballantines c/ Red Bull</span><span class="font-bold text-pink-500">R$ 35,00</span></div>
+                    <div class="flex justify-between items-center py-3 item-row"><span class="text-gray-300">Rock’s c/ Red Bull</span><span class="font-bold text-pink-500">R$ 30,00</span></div>
+                    <div class="flex justify-between items-center py-3 item-row"><span class="text-gray-300">White Horse c/ Red Bull</span><span class="font-bold text-pink-500">R$ 30,00</span></div>
+                    <div class="flex justify-between items-center py-3 item-row"><span class="text-gray-300">Absolut c/ Red Bull</span><span class="font-bold text-pink-500">R$ 30,00</span></div>
+                    <div class="flex justify-between items-center py-3 item-row"><span class="text-gray-300">Red Label c/ Red Bull</span><span class="font-bold text-pink-500">R$ 30,00</span></div>
+                    <div class="flex justify-between items-center py-3 item-row"><span class="text-gray-300">Smirnoff c/ Red Bull</span><span class="font-bold text-pink-500">R$ 25,00</span></div>
+                    <div class="flex justify-between items-center py-3 item-row"><span class="text-gray-300">Eternity Sabores</span><span class="font-bold text-pink-500">R$ 15,00</span></div>
                 </div>
             </div>
         </section>
 
-        <!-- Categoria: Narguilé (Hidden by default) -->
-        <section id="cat-narguilé" class="category-content hidden">
+        <!-- Categoria: Combos -->
+        <section id="cat-combos" class="category-content hidden">
+            <h2 class="text-2xl font-heading font-bold uppercase tracking-wider mb-6 text-center neon-gradient">Combos Exclusivos</h2>
+            
+            <div class="menu-card p-5 rounded-xl shadow-lg">
+                <div class="flex flex-col">
+                    <div class="flex justify-between items-center py-4 item-row">
+                        <div class="flex flex-col">
+                            <span class="text-white font-semibold">Old Parr</span>
+                            <span class="text-xs text-gray-400">Acompanha 4 Red Bull</span>
+                        </div>
+                        <span class="font-bold text-xl text-pink-500">R$ 280,00</span>
+                    </div>
+                    <div class="flex justify-between items-center py-4 item-row">
+                        <div class="flex flex-col">
+                            <span class="text-white font-semibold">Red Label</span>
+                            <span class="text-xs text-gray-400">Acompanha 4 Red Bull</span>
+                        </div>
+                        <span class="font-bold text-xl text-pink-500">R$ 200,00</span>
+                    </div>
+                    <div class="flex justify-between items-center py-4 item-row">
+                        <div class="flex flex-col">
+                            <span class="text-white font-semibold">Ballantines</span>
+                            <span class="text-xs text-gray-400">Acompanha 4 Red Bull</span>
+                        </div>
+                        <span class="font-bold text-xl text-pink-500">R$ 170,00</span>
+                    </div>
+                    <div class="flex justify-between items-center py-4 item-row">
+                        <div class="flex flex-col">
+                            <span class="text-white font-semibold">White Horse</span>
+                            <span class="text-xs text-gray-400">Acompanha 4 Red Bull</span>
+                        </div>
+                        <span class="font-bold text-xl text-pink-500">R$ 165,00</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Categoria: Sem Álcool -->
+        <section id="cat-semalcool" class="category-content hidden">
+            <h2 class="text-2xl font-heading font-bold uppercase tracking-wider mb-6 text-center neon-gradient">Bebidas Sem Álcool</h2>
+            
+            <div class="menu-card p-5 rounded-xl shadow-lg">
+                <div class="flex flex-col">
+                    <div class="flex justify-between items-center py-3 item-row"><span class="text-gray-300">Red Bull</span><span class="font-bold text-pink-500">R$ 15,00</span></div>
+                    <div class="flex justify-between items-center py-3 item-row"><span class="text-gray-300">Monster Mango</span><span class="font-bold text-pink-500">R$ 15,00</span></div>
+                    <div class="flex justify-between items-center py-3 item-row"><span class="text-gray-300">Coca Cola</span><span class="font-bold text-pink-500">R$ 8,00</span></div>
+                    <div class="flex justify-between items-center py-3 item-row"><span class="text-gray-300">Coca Cola Zero</span><span class="font-bold text-pink-500">R$ 8,00</span></div>
+                    <div class="flex justify-between items-center py-3 item-row"><span class="text-gray-300">Del Valle</span><span class="font-bold text-pink-500">R$ 8,00</span></div>
+                    <div class="flex justify-between items-center py-3 item-row"><span class="text-gray-300">Água com gás</span><span class="font-bold text-pink-500">R$ 6,00</span></div>
+                    <div class="flex justify-between items-center py-3 item-row"><span class="text-gray-300">Guaraná</span><span class="font-bold text-pink-500">R$ 6,00</span></div>
+                    <div class="flex justify-between items-center py-3 item-row"><span class="text-gray-300">Fanta Uva</span><span class="font-bold text-pink-500">R$ 6,00</span></div>
+                    <div class="flex justify-between items-center py-3 item-row"><span class="text-gray-300">Água sem gás</span><span class="font-bold text-pink-500">R$ 5,00</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Categoria: Narguilé -->
+        <section id="cat-narguile" class="category-content hidden">
             <h2 class="text-2xl font-heading font-bold uppercase tracking-wider mb-6 text-center neon-gradient">Sessão de Narguilé</h2>
-            <div class="grid gap-4">
-                <div class="menu-card p-4 rounded-xl flex justify-between items-center">
-                    <div class="flex-1">
-                        <h3 class="font-semibold text-white">Sessão Premium</h3>
-                        <p class="text-xs text-gray-400 leading-relaxed">Escolha sua essência premium (Zomo, Nay, Tangiers).</p>
+            
+            <div class="menu-card p-5 rounded-xl shadow-lg">
+                <div class="flex flex-col">
+                    <div class="flex justify-between items-center py-4 item-row">
+                        <div class="flex flex-col">
+                            <span class="text-white font-semibold text-lg">Rosh</span>
+                            <span class="text-xs text-gray-400">Sessão completa</span>
+                        </div>
+                        <span class="font-bold text-xl text-pink-500">R$ 30,00</span>
                     </div>
-                    <div class="ml-4 font-bold text-pink-500">R$ --,--</div>
-                </div>
-                <div class="menu-card p-4 rounded-xl flex justify-between items-center">
-                    <div class="flex-1">
-                        <h3 class="font-semibold text-white">Aluguel de Rosh Extra</h3>
-                        <p class="text-xs text-gray-400 leading-relaxed">Reposição de essência e carvão.</p>
+                    <div class="flex justify-between items-center py-4 item-row">
+                        <div class="flex flex-col">
+                            <span class="text-white font-semibold text-lg">Rosh Adicional</span>
+                            <span class="text-xs text-gray-400">Reposição na mesma sessão</span>
+                        </div>
+                        <span class="font-bold text-xl text-pink-500">R$ 25,00</span>
                     </div>
-                    <div class="ml-4 font-bold text-pink-500">R$ --,--</div>
                 </div>
             </div>
         </section>
@@ -141,7 +219,7 @@
     <footer class="mt-12 px-6 text-center border-t border-white/5 pt-8 pb-12 bg-black/60 backdrop-blur-sm">
         <div class="mb-6">
             <p class="text-sm text-pink-500 font-bold uppercase tracking-wider mb-2">📍 Localização</p>
-            <p class="text-xs text-gray-400">Rua Exemplo, 123 - Centro<br>São Paulo, SP</p>
+            <p class="text-xs text-gray-400">Rua Raul Saddi 66 - Butantã<br>São Paulo, SP</p>
         </div>
         <div class="mb-6">
             <p class="text-sm text-pink-500 font-bold uppercase tracking-wider mb-2">📱 Redes Sociais</p>
@@ -171,11 +249,15 @@
             document.getElementById('cat-' + category).classList.remove('hidden');
 
             // Adicionar estilo ativo no botão clicado
-            document.getElementById('tab-' + category).classList.add('tab-active');
-            document.getElementById('tab-' + category).classList.remove('text-gray-500');
+            const activeBtn = document.getElementById('tab-' + category);
+            activeBtn.classList.add('tab-active');
+            activeBtn.classList.remove('text-gray-500');
 
-            // Scroll suave para o topo do conteúdo
-            window.scrollTo({ top: 200, behavior: 'smooth' });
+            // Rola suavemente para deixar a aba clicada centralizada na tela (para mobile)
+            activeBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+            
+            // Scroll suave da página para o conteúdo
+            window.scrollTo({ top: 250, behavior: 'smooth' });
         }
     </script>
 
