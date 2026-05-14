@@ -1,302 +1,342 @@
 <!DOCTYPE html>
-
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Sobrinho Lounge — Butantã</title>
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Montserrat:wght@300;400;500;600;700;800&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet"/>
-  <style>
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    :root{
-      --purple:#bf5fff;
-      --purple2:#9932ff;
-      --cyan:#00cfff;
-      --pink:#ff2d9b;
-      --orange:#ff7b00;
-      --blk:#000;
-      --dark:#070707;
-      --d2:#0e0e0e;
-      --d3:#161616;
-      --smoke:#aaa;
-      --white:#fff;
-    }
-    html{scroll-behavior:smooth}
-    body{background:var(--blk);color:#bbb;font-family:'Rajdhani',sans-serif;overflow-x:hidden}
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Sobrinho Lounge — Butantã</title>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Montserrat:wght@300;400;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --pu:#c060ff;--pu2:#8820ee;
+  --cy:#00d8ff;--cy2:#0099cc;
+  --pk:#ff2090;--or:#ff7400;
+  --blk:#000;--dk:#070707;--dk2:#0d0d0d;--dk3:#141414;
+  --tx:#b0b0b0;--wh:#fff;
+}
+html{scroll-behavior:smooth}
+body{background:var(--blk);color:var(--tx);font-family:'Montserrat',sans-serif;font-weight:400;overflow-x:hidden}
+body::after{content:'';position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity:.024;pointer-events:none;z-index:9999}
 
-```
-/* noise */
-body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");opacity:.025;pointer-events:none;z-index:9999}
+/* ══════ NAV ══════ */
+nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:16px 48px;transition:all .4s}
+nav.solid{background:rgba(0,0,0,.95);border-bottom:1px solid rgba(192,96,255,.15);backdrop-filter:blur(16px)}
+.nv-logo{font-family:'Pacifico',cursive;font-size:1.4rem;color:#e0b0ff;text-shadow:0 0 8px var(--pu),0 0 20px rgba(192,96,255,.45);text-decoration:none}
+.nv-links{display:flex;gap:28px;list-style:none}
+.nv-links a{color:rgba(255,255,255,.38);text-decoration:none;font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;font-weight:600;transition:color .3s}
+.nv-links a:hover{color:var(--cy)}
+.nv-ig{color:var(--pk);text-decoration:none;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;font-weight:700;border:1.5px solid rgba(255,32,144,.38);padding:8px 18px;transition:all .3s}
+.nv-ig:hover{background:var(--pk);color:#000;box-shadow:0 0 24px rgba(255,32,144,.55)}
 
-/* ════ NAV ════ */
-nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:16px 48px;transition:background .4s,border-bottom .4s}
-nav.solid{background:rgba(0,0,0,.93);border-bottom:1px solid rgba(191,95,255,.18);backdrop-filter:blur(14px)}
-.nav-logo-text{font-family:'Pacifico',cursive;font-size:1.45rem;color:#d090ff;text-shadow:0 0 6px #bf5fff,0 0 16px rgba(191,95,255,.5);text-decoration:none;letter-spacing:.02em}
-.nav-links{display:flex;gap:28px;list-style:none}
-.nav-links a{color:rgba(255,255,255,.42);text-decoration:none;font-size:.75rem;letter-spacing:.22em;text-transform:uppercase;font-weight:500;transition:color .3s}
-.nav-links a:hover{color:var(--cyan)}
-.nav-btn{color:var(--pink);text-decoration:none;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;font-weight:700;border:1px solid rgba(255,45,155,.4);padding:8px 18px;transition:all .3s;font-family:'Montserrat',sans-serif}
-.nav-btn:hover{background:var(--pink);color:#000;box-shadow:0 0 22px rgba(255,45,155,.55)}
-
-/* ════ HERO ════ */
+/* ══════ HERO ══════ */
 .hero{position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden}
 
-/* animated grid */
-.h-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(191,95,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(0,207,255,.045) 1px,transparent 1px);background-size:65px 65px;animation:gridM 22s linear infinite}
-@keyframes gridM{0%{background-position:0 0}100%{background-position:65px 65px}}
+/* grid */
+.h-grid{position:absolute;inset:0;
+  background-image:linear-gradient(rgba(192,96,255,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(0,216,255,.04) 1px,transparent 1px);
+  background-size:70px 70px;animation:gShift 24s linear infinite}
+@keyframes gShift{0%{background-position:0 0}100%{background-position:70px 70px}}
 
-/* glows */
-.h-glow{position:absolute;border-radius:50%;pointer-events:none}
-.hg1{width:650px;height:650px;background:radial-gradient(circle,rgba(153,50,255,.16) 0%,transparent 68%);top:-5%;left:-12%;animation:gp 7s ease-in-out infinite}
-.hg2{width:520px;height:520px;background:radial-gradient(circle,rgba(0,207,255,.13) 0%,transparent 68%);bottom:0;right:-8%;animation:gp 8.5s ease-in-out infinite reverse}
-.hg3{width:380px;height:380px;background:radial-gradient(circle,rgba(255,45,155,.09) 0%,transparent 68%);top:52%;left:52%;transform:translate(-50%,-50%);animation:gp3 6s ease-in-out infinite}
-@keyframes gp{0%,100%{transform:scale(1);opacity:.75}50%{transform:scale(1.18);opacity:1}}
-@keyframes gp3{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.75}50%{transform:translate(-50%,-50%) scale(1.18);opacity:1}}
+/* glow orbs */
+.orb{position:absolute;border-radius:50%;pointer-events:none;filter:blur(1px)}
+.o1{width:700px;height:700px;background:radial-gradient(circle,rgba(136,32,238,.18) 0%,transparent 65%);top:-10%;left:-15%;animation:op 8s ease-in-out infinite}
+.o2{width:550px;height:550px;background:radial-gradient(circle,rgba(0,216,255,.12) 0%,transparent 65%);bottom:-5%;right:-10%;animation:op 9s ease-in-out infinite reverse}
+.o3{width:400px;height:400px;background:radial-gradient(circle,rgba(255,32,144,.08) 0%,transparent 65%);top:55%;left:50%;animation:opc 7s ease-in-out infinite}
+@keyframes op{0%,100%{transform:scale(1);opacity:.7}50%{transform:scale(1.2);opacity:1}}
+@keyframes opc{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.7}50%{transform:translate(-50%,-50%) scale(1.2);opacity:1}}
 
-.hero-content{position:relative;z-index:2;text-align:center;animation:fadeUp 1s ease both}
+/* smoke canvas */
+#smokeCanvas{position:absolute;inset:0;z-index:1;pointer-events:none;opacity:.7}
 
-/* ── NEON SIGN (faithful to real logo) ── */
-.sign{display:inline-flex;flex-direction:column;align-items:flex-start;gap:0}
+.hero-inner{position:relative;z-index:3;text-align:center;animation:fUp 1s ease both}
 
-/* SOBRINHO — white text, purple-to-cyan neon glow via double shadow */
-.sign-sobrinho{
+/* ══ NEON LOGO ══
+   Layout faithful to real sign:
+   "Sobrinho" — large cursive, purple glow spanning full width
+   "Lounge"   — rectangular neon box, right-aligned, pink/orange glow
+   No wrapper divs with backgrounds — only the border on the box itself
+*/
+.neon-sign{display:inline-block;position:relative;line-height:1}
+
+.ns-sobrinho{
   font-family:'Pacifico',cursive;
-  font-size:clamp(4rem,12vw,9.5rem);
+  font-size:clamp(3.8rem,11vw,9rem);
   line-height:1;
-  color:#f0e0ff;            /* very light lavender — like lit neon glass */
-  text-shadow:
-    0 0 4px #fff,
-    0 0 10px #fff,
-    0 0 20px var(--purple),
-    0 0 40px var(--purple),
-    0 0 80px var(--purple2),
-    0 0 120px var(--purple2),
-    0 0 180px rgba(153,50,255,.4);
-  animation:neonPulseS 9s ease-in-out infinite, signIn 1.1s ease both;
+  color:#eedeff;
   display:block;
+  white-space:nowrap;
+  text-shadow:
+    0 0 3px #fff,
+    0 0 8px #fff,
+    0 0 16px var(--pu),
+    0 0 35px var(--pu),
+    0 0 70px var(--pu2),
+    0 0 110px var(--pu2),
+    0 0 160px rgba(136,32,238,.35);
+  animation:nsFlicker 10s ease-in-out infinite, nsIn .9s ease both;
 }
 
-@keyframes neonPulseS{
-  0%,100%{text-shadow:0 0 4px #fff,0 0 10px #fff,0 0 20px var(--purple),0 0 40px var(--purple),0 0 80px var(--purple2),0 0 120px var(--purple2),0 0 180px rgba(153,50,255,.4)}
-  48%{text-shadow:0 0 2px #fff,0 0 6px rgba(191,95,255,.6),0 0 14px var(--purple),0 0 30px var(--purple)}
-  50%{text-shadow:0 0 4px #fff,0 0 12px #fff,0 0 26px var(--cyan),0 0 55px var(--cyan),0 0 90px var(--cyan),0 0 160px rgba(0,207,255,.35)}
-  52%{text-shadow:0 0 2px #fff,0 0 6px rgba(191,95,255,.6),0 0 14px var(--purple),0 0 30px var(--purple)}
+.ns-lounge-row{
+  display:flex;
+  justify-content:flex-end;
+  margin-top:-4px;
 }
 
-/* LOUNGE — pink/orange neon, inside glowing border box */
-.sign-lounge-wrap{
-  align-self:flex-end;
-  margin-top:-12px;
-  border:3px solid #ff2d9b;
-  padding:5px 26px 9px;
-  position:relative;
+/* The box: ONLY border — no background — so no "block" artifact */
+.ns-box{
+  display:inline-block;
+  border:3px solid #ff2090;
+  padding:4px 22px 8px;
   box-shadow:
-    0 0 6px #ff2d9b,
-    0 0 18px rgba(255,45,155,.55),
-    0 0 40px rgba(255,45,155,.25),
-    inset 0 0 10px rgba(255,45,155,.07);
-  animation:neonPulseB 11s ease-in-out infinite, signIn 1.1s .08s ease both;
+    0 0 5px #ff2090,
+    0 0 15px rgba(255,32,144,.5),
+    0 0 35px rgba(255,32,144,.22),
+    inset 0 0 8px rgba(255,32,144,.06);
+  animation:boxFlicker 13s ease-in-out infinite, nsIn .9s .06s ease both;
 }
 
-@keyframes neonPulseB{
-  0%,100%{border-color:#ff2d9b;box-shadow:0 0 6px #ff2d9b,0 0 18px rgba(255,45,155,.55),0 0 40px rgba(255,45,155,.25),inset 0 0 10px rgba(255,45,155,.07)}
-  45%{border-color:#ff7b00;box-shadow:0 0 8px #ff7b00,0 0 22px rgba(255,123,0,.6),0 0 50px rgba(255,123,0,.3),inset 0 0 14px rgba(255,123,0,.08)}
-  90%,92%{border-color:rgba(255,45,155,.3);box-shadow:0 0 2px rgba(255,45,155,.4),0 0 4px rgba(255,45,155,.2)}
-  91%{border-color:#ff2d9b;box-shadow:0 0 10px #ff2d9b,0 0 28px rgba(255,45,155,.7),0 0 55px rgba(255,45,155,.35)}
-}
-
-.sign-lounge{
+.ns-lounge{
   font-family:'Montserrat',sans-serif;
-  font-size:clamp(1.9rem,5.5vw,4.2rem);
-  font-weight:800;
-  letter-spacing:.22em;
+  font-size:clamp(1.6rem,4.8vw,3.8rem);
+  font-weight:900;
+  letter-spacing:.25em;
   text-transform:uppercase;
-  color:#ffb0d8;          /* warm pink-white like neon tube */
-  text-shadow:
-    0 0 4px #fff,
-    0 0 10px #fff,
-    0 0 18px var(--pink),
-    0 0 38px var(--pink),
-    0 0 80px var(--orange),
-    0 0 120px rgba(255,123,0,.4);
+  color:#ffaacc;
   display:block;
-  animation:neonPulseL 11s ease-in-out infinite;
+  text-shadow:
+    0 0 3px #fff,
+    0 0 8px #fff,
+    0 0 16px var(--pk),
+    0 0 35px var(--pk),
+    0 0 70px var(--or),
+    0 0 110px rgba(255,116,0,.35);
+  animation:loungeFlicker 13s ease-in-out infinite;
 }
 
-@keyframes neonPulseL{
-  0%,100%{color:#ffb0d8;text-shadow:0 0 4px #fff,0 0 10px #fff,0 0 18px var(--pink),0 0 38px var(--pink),0 0 80px var(--orange),0 0 120px rgba(255,123,0,.4)}
-  45%{color:#ffd0a0;text-shadow:0 0 4px #fff,0 0 10px #fff,0 0 20px var(--orange),0 0 45px var(--orange),0 0 90px rgba(255,123,0,.5)}
-  90%,92%{text-shadow:0 0 2px rgba(255,45,155,.5),0 0 6px rgba(255,45,155,.3)}
-  91%{text-shadow:0 0 5px #fff,0 0 14px #fff,0 0 28px var(--pink),0 0 60px var(--pink)}
+@keyframes nsIn{from{opacity:0;transform:scale(.88)}to{opacity:1;transform:scale(1)}}
+
+@keyframes nsFlicker{
+  0%,100%{text-shadow:0 0 3px #fff,0 0 8px #fff,0 0 16px var(--pu),0 0 35px var(--pu),0 0 70px var(--pu2),0 0 110px var(--pu2),0 0 160px rgba(136,32,238,.35)}
+  40%{text-shadow:0 0 3px #fff,0 0 8px #fff,0 0 18px var(--cy),0 0 40px var(--cy),0 0 80px var(--cy2),0 0 130px rgba(0,153,204,.3)}
+  85%,87%{text-shadow:0 0 1px rgba(255,255,255,.4),0 0 4px var(--pu),0 0 8px var(--pu)}
+  86%{text-shadow:0 0 4px #fff,0 0 14px #fff,0 0 28px var(--pu),0 0 55px var(--pu),0 0 100px var(--pu2)}
 }
 
-@keyframes signIn{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
+@keyframes boxFlicker{
+  0%,100%{border-color:#ff2090;box-shadow:0 0 5px #ff2090,0 0 15px rgba(255,32,144,.5),0 0 35px rgba(255,32,144,.22),inset 0 0 8px rgba(255,32,144,.06)}
+  50%{border-color:#ff7400;box-shadow:0 0 7px #ff7400,0 0 20px rgba(255,116,0,.55),0 0 45px rgba(255,116,0,.25),inset 0 0 10px rgba(255,116,0,.07)}
+  92%,94%{border-color:rgba(255,32,144,.2);box-shadow:0 0 1px rgba(255,32,144,.3)}
+  93%{border-color:#ff2090;box-shadow:0 0 8px #ff2090,0 0 22px rgba(255,32,144,.65),0 0 50px rgba(255,32,144,.3)}
+}
 
-.hero-sub{font-family:'Montserrat',sans-serif;font-size:.72rem;letter-spacing:.42em;text-transform:uppercase;color:rgba(255,255,255,.35);margin:28px 0 28px;animation:fadeUp 1s .45s ease both}
+@keyframes loungeFlicker{
+  0%,100%{color:#ffaacc;text-shadow:0 0 3px #fff,0 0 8px #fff,0 0 16px var(--pk),0 0 35px var(--pk),0 0 70px var(--or),0 0 110px rgba(255,116,0,.35)}
+  50%{color:#ffd0a0;text-shadow:0 0 3px #fff,0 0 8px #fff,0 0 18px var(--or),0 0 40px var(--or),0 0 80px rgba(255,116,0,.5)}
+  92%,94%{color:rgba(255,170,204,.3);text-shadow:none}
+  93%{color:#ffaacc;text-shadow:0 0 5px #fff,0 0 16px var(--pk),0 0 40px var(--pk)}
+}
 
-.hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;animation:fadeUp 1s .58s ease both}
-.btn{display:inline-block;padding:12px 30px;font-family:'Montserrat',sans-serif;font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;text-decoration:none;font-weight:700;cursor:pointer;border:none;transition:all .3s}
-.btn-c{background:transparent;color:var(--cyan);border:1.5px solid var(--cyan);box-shadow:0 0 10px rgba(0,207,255,.25)}
-.btn-c:hover{background:var(--cyan);color:#000;box-shadow:0 0 28px rgba(0,207,255,.6)}
-.btn-p{background:var(--pink);color:#000;box-shadow:0 0 18px rgba(255,45,155,.4)}
-.btn-p:hover{transform:translateY(-2px);box-shadow:0 0 36px rgba(255,45,155,.7)}
+/* hero sub & btns */
+.hero-sub{font-size:.68rem;letter-spacing:.45em;text-transform:uppercase;color:rgba(255,255,255,.3);margin:26px 0 26px;font-weight:600;animation:fUp 1s .4s ease both}
+.hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;animation:fUp 1s .55s ease both}
+.btn{display:inline-block;padding:12px 28px;font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;text-decoration:none;font-weight:700;cursor:pointer;border:none;transition:all .3s;font-family:'Montserrat',sans-serif}
+.btn-cy{background:transparent;color:var(--cy);border:1.5px solid var(--cy);box-shadow:0 0 10px rgba(0,216,255,.2)}
+.btn-cy:hover{background:var(--cy);color:#000;box-shadow:0 0 28px rgba(0,216,255,.6)}
+.btn-pk{background:var(--pk);color:#000;box-shadow:0 0 18px rgba(255,32,144,.4)}
+.btn-pk:hover{transform:translateY(-2px);box-shadow:0 0 36px rgba(255,32,144,.7)}
+.btn-ev{background:linear-gradient(135deg,var(--pu),var(--pk));color:#fff;box-shadow:0 0 18px rgba(192,96,255,.4)}
+.btn-ev:hover{transform:translateY(-2px);box-shadow:0 0 36px rgba(192,96,255,.7)}
 
-.hero-addr{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);text-align:center;animation:fadeUp 1s .8s ease both;white-space:nowrap}
-.hero-addr p{font-family:'Montserrat',sans-serif;font-size:.63rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.3)}
-.hero-addr strong{color:rgba(255,255,255,.6);font-weight:600}
+.hero-addr{position:absolute;bottom:34px;left:50%;transform:translateX(-50%);white-space:nowrap;animation:fUp 1s .8s ease both}
+.hero-addr p{font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.28)}
+.hero-addr strong{color:rgba(255,255,255,.58);font-weight:600}
 
-@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
 
 /* STRIP */
-.strip{height:2px;background:linear-gradient(90deg,transparent 0%,var(--purple) 25%,var(--cyan) 50%,var(--pink) 75%,transparent 100%);background-size:200% 100%;animation:stripM 3.5s linear infinite}
+.strip{height:2px;background:linear-gradient(90deg,transparent,var(--pu),var(--cy),var(--pk),transparent);background-size:200%;animation:stripM 3.5s linear infinite}
 @keyframes stripM{0%{background-position:-100% 0}100%{background-position:100% 0}}
 
-/* ════ SECTIONS ════ */
-.sec{padding:90px 48px}
-.lbl{font-family:'Montserrat',sans-serif;font-size:.6rem;letter-spacing:.55em;text-transform:uppercase;color:var(--cyan);margin-bottom:10px;font-weight:600}
-.ttl{font-family:'Montserrat',sans-serif;font-size:clamp(1.9rem,4vw,3rem);font-weight:800;color:var(--white);line-height:1.05}
-.ttl .hi{background:linear-gradient(90deg,var(--purple),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.rule{width:52px;height:2px;background:linear-gradient(90deg,var(--purple),var(--cyan));box-shadow:0 0 8px var(--purple);margin:18px 0}
+/* ══════ SECTION BASE ══════ */
+.sec{padding:88px 48px}
+.slbl{font-size:.6rem;letter-spacing:.55em;text-transform:uppercase;color:var(--cy);margin-bottom:10px;font-weight:700}
+.sttl{font-size:clamp(1.8rem,3.8vw,3rem);font-weight:900;color:var(--wh);line-height:1.05}
+.sttl .hi{background:linear-gradient(90deg,var(--pu),var(--cy));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.sttl .hip{background:linear-gradient(90deg,var(--pk),var(--or));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.rule{width:50px;height:2px;background:linear-gradient(90deg,var(--pu),var(--cy));box-shadow:0 0 8px var(--pu);margin:16px 0}
+.rule-pk{background:linear-gradient(90deg,var(--pk),var(--or));box-shadow:0 0 8px var(--pk)}
 
-/* ════ SOBRE ════ */
-.sobre-sec{background:var(--dark)}
-.sobre-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;max-width:1160px;margin:0 auto}
-.sobre-text p{font-size:1.02rem;line-height:1.9;color:var(--smoke);margin-bottom:16px}
-.stats{display:flex;gap:32px;margin-top:32px}
-.stat-n{font-family:'Montserrat',sans-serif;font-size:2.2rem;font-weight:800;background:linear-gradient(135deg,var(--purple),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.stat-l{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.28);margin-top:3px;font-family:'Montserrat',sans-serif}
-.sobre-box{position:relative;height:390px;border:1px solid rgba(191,95,255,.2);background:var(--d2);overflow:hidden}
-.sobre-box::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 80% at 50% 50%,rgba(191,95,255,.07) 0%,transparent 70%)}
-.sobre-inner{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px}
-.sb-neon{font-family:'Pacifico',cursive;font-size:3rem;color:#e0c0ff;text-shadow:0 0 6px #fff,0 0 16px var(--purple),0 0 40px var(--purple)}
-.sb-addr{border:1px solid rgba(0,207,255,.3);padding:14px 22px;text-align:center;margin-top:10px}
-.sb-addr .al{font-family:'Montserrat',sans-serif;font-size:.58rem;letter-spacing:.35em;color:var(--cyan);text-transform:uppercase;margin-bottom:5px;font-weight:600}
-.sb-addr .av{font-size:.92rem;font-weight:700;color:var(--white)}
-.sb-addr .as{font-size:.73rem;color:rgba(255,255,255,.42);margin-top:3px}
-.sb-ig{font-family:'Montserrat',sans-serif;font-size:.6rem;letter-spacing:.25em;color:var(--pink);text-decoration:none;text-transform:uppercase;font-weight:700;margin-top:6px;transition:text-shadow .3s}
-.sb-ig:hover{text-shadow:0 0 10px var(--pink)}
+/* ══════ SOBRE ══════ */
+.sobre-sec{background:var(--dk)}
+.sg{display:grid;grid-template-columns:1fr 1fr;gap:76px;align-items:center;max-width:1160px;margin:0 auto}
+.st p{font-size:1rem;line-height:1.9;color:var(--tx);margin-bottom:14px}
+.stats{display:flex;gap:28px;margin-top:28px}
+.sn{font-size:2.1rem;font-weight:900;background:linear-gradient(135deg,var(--pu),var(--pk));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.sl{font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.26);margin-top:3px}
+.sv{position:relative;height:370px;border:1px solid rgba(192,96,255,.18);background:var(--dk2);overflow:hidden}
+.sv::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 80% at 50% 50%,rgba(192,96,255,.06) 0%,transparent 70%)}
+.si{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px}
+.si-n{font-family:'Pacifico',cursive;font-size:2.8rem;color:#e0b0ff;text-shadow:0 0 6px #fff,0 0 14px var(--pu),0 0 36px var(--pu)}
+.si-ab{border:1px solid rgba(0,216,255,.28);padding:13px 20px;text-align:center;margin-top:8px}
+.si-ab .al{font-size:.57rem;letter-spacing:.35em;color:var(--cy);text-transform:uppercase;margin-bottom:5px;font-weight:700}
+.si-ab .av{font-size:.9rem;font-weight:700;color:var(--wh)}
+.si-ab .as{font-size:.7rem;color:rgba(255,255,255,.38);margin-top:2px}
+.si-ig{font-size:.6rem;letter-spacing:.24em;color:var(--pk);text-decoration:none;text-transform:uppercase;font-weight:700;margin-top:4px;transition:text-shadow .3s}
+.si-ig:hover{text-shadow:0 0 10px var(--pk)}
 
-/* ════ MENU ════ */
-.menu-sec{background:var(--blk)}
-.menu-wrap{max-width:1280px;margin:0 auto}
-.menu-hd{text-align:center;margin-bottom:52px}
-.menu-hd .rule{margin:18px auto}
+/* ══════ EVENTOS ══════ */
+.eventos-sec{background:var(--blk);position:relative;overflow:hidden}
+.eventos-sec::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 30%,rgba(192,96,255,.05) 0%,transparent 70%);pointer-events:none}
+.ev-hd{text-align:center;margin-bottom:60px}
+.ev-hd .rule{margin:16px auto}
+.ev-hd p{font-size:1rem;color:var(--tx);max-width:600px;margin:0 auto;line-height:1.7}
 
-.tabs{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;margin-bottom:46px}
-.tab{padding:9px 20px;font-family:'Montserrat',sans-serif;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;font-weight:700;background:transparent;border:1px solid rgba(191,95,255,.22);color:rgba(255,255,255,.4);cursor:pointer;transition:all .3s}
-.tab:hover{border-color:var(--purple);color:var(--purple)}
-.tab.on{background:var(--purple);border-color:var(--purple);color:#000;box-shadow:0 0 16px rgba(191,95,255,.5)}
+.ev-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px;max-width:1200px;margin:0 auto 60px}
 
-.cat{display:none}
-.cat.on{display:block}
+.ev-card{border:1px solid rgba(192,96,255,.22);background:var(--dk2);padding:36px 30px;position:relative;overflow:hidden;transition:all .35s}
+.ev-card::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 0%,rgba(192,96,255,.05) 0%,transparent 70%);pointer-events:none}
+.ev-card:hover{border-color:var(--pu);transform:translateY(-5px);box-shadow:0 20px 50px rgba(192,96,255,.12)}
 
-.cat-ttl{font-family:'Pacifico',cursive;font-size:2.2rem;color:#e0c0ff;text-shadow:0 0 8px var(--purple),0 0 20px rgba(191,95,255,.4);margin-bottom:4px}
-.cat-sub{font-family:'Montserrat',sans-serif;font-size:.6rem;letter-spacing:.35em;text-transform:uppercase;color:rgba(255,255,255,.28);margin-bottom:28px;font-weight:500}
+.ev-card.highlight{border-color:rgba(255,32,144,.4);background:linear-gradient(145deg,#0d0d0d,#110810)}
+.ev-card.highlight::before{background:radial-gradient(ellipse 70% 60% at 50% 0%,rgba(255,32,144,.07) 0%,transparent 70%)}
+.ev-card.highlight:hover{border-color:var(--pk);box-shadow:0 20px 50px rgba(255,32,144,.14)}
 
-.ig{display:grid;grid-template-columns:repeat(auto-fill,minmax(295px,1fr));gap:2px}
-.it{display:flex;align-items:center;padding:15px 18px;background:var(--d2);border:1px solid rgba(255,255,255,.04);transition:all .3s;position:relative;overflow:hidden}
-.it::after{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--purple),var(--cyan));transform:scaleY(0);transition:transform .3s;transform-origin:top}
-.it:hover{background:var(--d3);border-color:rgba(191,95,255,.14)}
+.ev-tag{display:inline-block;font-size:.55rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;padding:4px 10px;margin-bottom:20px;background:linear-gradient(135deg,var(--pu),var(--pk));color:#fff}
+.ev-tag-pk{background:linear-gradient(135deg,var(--pk),var(--or))}
+
+.ev-icon{font-size:2.6rem;display:block;margin-bottom:14px}
+.ev-name{font-size:1.4rem;font-weight:900;color:var(--wh);margin-bottom:6px}
+.ev-desc{font-size:.82rem;color:rgba(255,255,255,.4);letter-spacing:.06em;margin-bottom:24px;line-height:1.6}
+
+.ev-perks{list-style:none;margin-bottom:28px;display:flex;flex-direction:column;gap:10px}
+.ev-perks li{display:flex;align-items:flex-start;gap:10px;font-size:.84rem;color:rgba(255,255,255,.7);line-height:1.4}
+.ev-perks li::before{content:'✦';color:var(--pu);font-size:.7rem;margin-top:2px;flex-shrink:0}
+.ev-card.highlight .ev-perks li::before{color:var(--pk)}
+
+.ev-note{font-size:.72rem;color:rgba(255,255,255,.28);letter-spacing:.05em;border-top:1px solid rgba(255,255,255,.06);padding-top:16px;line-height:1.6}
+
+/* CTA evento */
+.ev-cta{text-align:center;max-width:580px;margin:0 auto}
+.ev-cta p{font-size:.9rem;color:rgba(255,255,255,.45);margin-bottom:24px;line-height:1.7}
+.ev-cta-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+
+/* ══════ MENU ══════ */
+.menu-sec{background:var(--dk)}
+.mw{max-width:1260px;margin:0 auto}
+.mhd{text-align:center;margin-bottom:50px}
+.mhd .rule{margin:16px auto}
+
+.tabs{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;margin-bottom:44px}
+.tab{padding:9px 19px;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;font-weight:700;background:transparent;border:1.5px solid rgba(192,96,255,.2);color:rgba(255,255,255,.36);cursor:pointer;transition:all .3s;font-family:'Montserrat',sans-serif}
+.tab:hover{border-color:var(--pu);color:var(--pu)}
+.tab.on{background:var(--pu);border-color:var(--pu);color:#000;box-shadow:0 0 16px rgba(192,96,255,.48)}
+
+.cat{display:none}.cat.on{display:block}
+.ct{font-family:'Pacifico',cursive;font-size:2rem;color:#e0b0ff;text-shadow:0 0 8px var(--pu),0 0 20px rgba(192,96,255,.38);margin-bottom:4px}
+.cs{font-size:.58rem;letter-spacing:.35em;text-transform:uppercase;color:rgba(255,255,255,.26);margin-bottom:26px;font-weight:600}
+
+.ig{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:2px}
+.it{display:flex;align-items:center;padding:14px 17px;background:var(--dk3);border:1px solid rgba(255,255,255,.035);transition:all .3s;position:relative;overflow:hidden}
+.it::after{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--pu),var(--cy));transform:scaleY(0);transition:transform .3s;transform-origin:top}
+.it:hover{background:#181818;border-color:rgba(192,96,255,.12)}
 .it:hover::after{transform:scaleY(1)}
-.it-n{font-size:.88rem;font-weight:500;color:rgba(255,255,255,.8)}
-.it-d{flex:1;height:1px;margin:0 10px 1px;background:repeating-linear-gradient(90deg,rgba(191,95,255,.18) 0,rgba(191,95,255,.18) 2px,transparent 2px,transparent 8px)}
-.it-p{font-family:'Montserrat',sans-serif;font-size:.95rem;font-weight:700;color:var(--cyan);white-space:nowrap;text-shadow:0 0 8px rgba(0,207,255,.35)}
+.itn{font-size:.86rem;font-weight:500;color:rgba(255,255,255,.78)}
+.itd{flex:1;height:1px;margin:0 9px 1px;background:repeating-linear-gradient(90deg,rgba(192,96,255,.16) 0,rgba(192,96,255,.16) 2px,transparent 2px,transparent 8px)}
+.itp{font-size:.92rem;font-weight:700;color:var(--cy);white-space:nowrap;text-shadow:0 0 7px rgba(0,216,255,.32)}
 
 /* COMBOS */
-.cg{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px}
-.cc{border:1px solid rgba(191,95,255,.28);background:var(--d2);padding:26px 24px;position:relative;overflow:hidden;transition:all .35s}
-.cc::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 80% at 50% 0%,rgba(191,95,255,.06) 0%,transparent 70%);pointer-events:none}
-.cc:hover{border-color:var(--purple);transform:translateY(-4px);box-shadow:0 16px 44px rgba(191,95,255,.14)}
-.cc-badge{position:absolute;top:0;right:0;background:linear-gradient(135deg,var(--purple),var(--pink));font-family:'Montserrat',sans-serif;font-size:.52rem;font-weight:700;letter-spacing:.15em;color:#fff;padding:4px 9px;text-transform:uppercase}
-.cc-n{font-family:'Montserrat',sans-serif;font-size:1.1rem;font-weight:800;color:var(--white);margin-bottom:4px}
-.cc-d{font-size:.7rem;letter-spacing:.1em;color:rgba(255,255,255,.32);text-transform:uppercase;margin-bottom:16px;font-family:'Montserrat',sans-serif}
-.cc-p{font-family:'Montserrat',sans-serif;font-size:1.9rem;font-weight:800;color:#d090ff;text-shadow:0 0 8px rgba(191,95,255,.45)}
+.cg{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:15px}
+.cc{border:1px solid rgba(192,96,255,.25);background:var(--dk3);padding:24px 22px;position:relative;overflow:hidden;transition:all .32s}
+.cc::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 70% at 50% 0%,rgba(192,96,255,.055) 0%,transparent 70%);pointer-events:none}
+.cc:hover{border-color:var(--pu);transform:translateY(-3px);box-shadow:0 14px 40px rgba(192,96,255,.12)}
+.cc-b{position:absolute;top:0;right:0;background:linear-gradient(135deg,var(--pu),var(--pk));font-size:.5rem;font-weight:700;letter-spacing:.14em;color:#fff;padding:3px 8px;text-transform:uppercase}
+.cc-n{font-size:1.05rem;font-weight:800;color:var(--wh);margin-bottom:3px}
+.cc-d{font-size:.66rem;letter-spacing:.09em;color:rgba(255,255,255,.3);text-transform:uppercase;margin-bottom:14px}
+.cc-p{font-size:1.85rem;font-weight:900;color:#cc88ff;text-shadow:0 0 8px rgba(192,96,255,.42)}
 
 /* ROSH */
-.rosh-box{max-width:560px;margin:0 auto;border:1px solid rgba(255,45,155,.35);background:var(--d2);padding:48px 38px;text-align:center;position:relative;overflow:hidden}
-.rosh-box::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(255,45,155,.06) 0%,transparent 70%)}
-.rosh-em{font-size:3rem;display:block;margin-bottom:14px}
-.rosh-t{font-family:'Pacifico',cursive;font-size:2.8rem;color:#ffb0d8;text-shadow:0 0 6px #fff,0 0 16px var(--pink),0 0 40px var(--pink);margin-bottom:6px}
-.rosh-s{font-family:'Montserrat',sans-serif;font-size:.6rem;letter-spacing:.35em;text-transform:uppercase;color:rgba(255,255,255,.32);margin-bottom:30px;font-weight:600}
-.rosh-ps{display:flex;justify-content:center}
-.rp{padding:18px 36px;text-align:center}
-.rp:first-child{border-right:1px solid rgba(255,45,155,.2)}
-.rp-l{font-family:'Montserrat',sans-serif;font-size:.58rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.38);margin-bottom:7px;font-weight:600}
-.rp-v{font-family:'Montserrat',sans-serif;font-size:2.2rem;font-weight:800;color:#ffb0d8;text-shadow:0 0 10px rgba(255,45,155,.5)}
+.rb{max-width:540px;margin:0 auto;border:1px solid rgba(255,32,144,.32);background:var(--dk3);padding:46px 36px;text-align:center;position:relative;overflow:hidden}
+.rb::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 55% at 50% 0%,rgba(255,32,144,.055) 0%,transparent 70%)}
+.re{font-size:2.8rem;display:block;margin-bottom:12px}
+.rt{font-family:'Pacifico',cursive;font-size:2.5rem;color:#ffaacc;text-shadow:0 0 6px #fff,0 0 14px var(--pk),0 0 38px var(--pk);margin-bottom:6px}
+.rs{font-size:.58rem;letter-spacing:.35em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:28px;font-weight:700}
+.rps{display:flex;justify-content:center}
+.rp{padding:16px 34px;text-align:center}
+.rp:first-child{border-right:1px solid rgba(255,32,144,.18)}
+.rpl{font-size:.56rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:6px;font-weight:700}
+.rpv{font-size:2.1rem;font-weight:900;color:#ffaacc;text-shadow:0 0 9px rgba(255,32,144,.48)}
 
-/* ════ FOOTER ════ */
-footer{background:var(--dark);border-top:1px solid rgba(191,95,255,.1);padding:56px 48px 36px}
-.fg{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:44px;max-width:1080px;margin:0 auto 36px}
-.fb{font-family:'Pacifico',cursive;font-size:2rem;color:#d090ff;text-shadow:0 0 6px var(--purple),0 0 18px rgba(191,95,255,.4);display:block;margin-bottom:7px}
-.ft{font-size:.78rem;color:rgba(255,255,255,.28);line-height:1.7}
-.fc h4{font-family:'Montserrat',sans-serif;font-size:.58rem;letter-spacing:.35em;text-transform:uppercase;color:var(--cyan);margin-bottom:16px;font-weight:700}
-.fc p,.fc a{font-size:.85rem;color:rgba(255,255,255,.45);line-height:2.1;text-decoration:none;display:block;transition:color .3s;font-family:'Rajdhani',sans-serif}
-.fc a:hover{color:var(--pink)}
-.pk{color:var(--pink)!important;font-weight:700}
-.fbot{border-top:1px solid rgba(255,255,255,.04);padding-top:22px;text-align:center;font-family:'Montserrat',sans-serif;font-size:.58rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(255,255,255,.15)}
+/* ══════ FOOTER ══════ */
+footer{background:var(--dk);border-top:1px solid rgba(192,96,255,.09);padding:54px 48px 34px}
+.fg{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:42px;max-width:1080px;margin:0 auto 32px}
+.fb{font-family:'Pacifico',cursive;font-size:1.9rem;color:#d090ff;text-shadow:0 0 6px var(--pu),0 0 16px rgba(192,96,255,.38);display:block;margin-bottom:7px}
+.ft{font-size:.76rem;color:rgba(255,255,255,.26);line-height:1.75}
+.fc h4{font-size:.57rem;letter-spacing:.35em;text-transform:uppercase;color:var(--cy);margin-bottom:15px;font-weight:700}
+.fc p,.fc a{font-size:.84rem;color:rgba(255,255,255,.42);line-height:2.1;text-decoration:none;display:block;transition:color .3s}
+.fc a:hover{color:var(--pk)}
+.pk-a{color:var(--pk)!important;font-weight:700}
+.fbot{border-top:1px solid rgba(255,255,255,.04);padding-top:20px;text-align:center;font-size:.57rem;letter-spacing:.24em;text-transform:uppercase;color:rgba(255,255,255,.14)}
 
 /* REVEAL */
-.rv{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease}
+.rv{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
 .rv.in{opacity:1;transform:translateY(0)}
+.rv2{opacity:0;transform:translateY(18px);transition:opacity .7s .15s ease,transform .7s .15s ease}
+.rv2.in{opacity:1;transform:translateY(0)}
 
 /* MOBILE */
 @media(max-width:768px){
-  nav{padding:14px 18px}
-  .nav-links{display:none}
-  .sec{padding:60px 18px}
-  .sobre-grid{grid-template-columns:1fr;gap:36px}
-  .sobre-box{height:240px}
-  .fg{grid-template-columns:1fr;gap:28px}
-  footer{padding:44px 18px 28px}
-  .ig{grid-template-columns:1fr}
-  .cg{grid-template-columns:1fr}
-  .rosh-box{padding:32px 18px}
+  nav{padding:14px 18px}.nv-links{display:none}
+  .sec{padding:58px 18px}
+  .sg{grid-template-columns:1fr;gap:34px}.sv{height:230px}
+  .fg{grid-template-columns:1fr;gap:26px}footer{padding:42px 18px 28px}
+  .ig{grid-template-columns:1fr}.cg{grid-template-columns:1fr}
+  .rb{padding:30px 16px}.ev-cards{grid-template-columns:1fr}
 }
-```
-
-  </style>
+</style>
 </head>
 <body>
 
 <!-- NAV -->
-
 <nav id="nav">
-  <a href="#" class="nav-logo-text">Sobrinho Lounge</a>
-  <ul class="nav-links">
+  <a href="#" class="nv-logo">Sobrinho Lounge</a>
+  <ul class="nv-links">
     <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#eventos">Eventos</a></li>
     <li><a href="#cardapio">Cardápio</a></li>
     <li><a href="#contato">Contato</a></li>
   </ul>
-  <a href="https://www.instagram.com/sobrinholounge" target="_blank" class="nav-btn">&#9679;&nbsp;@sobrinholounge</a>
+  <a href="https://www.instagram.com/sobrinholounge" target="_blank" class="nv-ig">&#9679;&nbsp;@sobrinholounge</a>
 </nav>
 
 <!-- HERO -->
-
 <div class="hero">
   <div class="h-grid"></div>
-  <div class="h-glow hg1"></div>
-  <div class="h-glow hg2"></div>
-  <div class="h-glow hg3"></div>
+  <div class="orb o1"></div>
+  <div class="orb o2"></div>
+  <div class="orb o3"></div>
+  <canvas id="smokeCanvas"></canvas>
 
-  <div class="hero-content">
-    <div class="sign">
-      <span class="sign-sobrinho">Sobrinho</span>
-      <div style="align-self:flex-end;margin-top:-10px;">
-        <span class="sign-lounge-wrap">
-          <span class="sign-lounge">Lounge</span>
+  <div class="hero-inner">
+
+    <!-- NEON SIGN — faithful to real logo -->
+    <div class="neon-sign">
+      <span class="ns-sobrinho">Sobrinho</span>
+      <div class="ns-lounge-row">
+        <span class="ns-box">
+          <span class="ns-lounge">Lounge</span>
         </span>
       </div>
     </div>
 
-```
-<p class="hero-sub">Onde cada noite vira memória &nbsp;·&nbsp; Butantã, SP</p>
+    <p class="hero-sub">Onde cada noite vira memória &nbsp;·&nbsp; Butantã, SP</p>
 
-<div class="hero-btns">
-  <a href="#cardapio" class="btn btn-c">Ver Cardápio</a>
-  <a href="https://www.instagram.com/sobrinholounge" target="_blank" class="btn btn-p">Instagram</a>
-</div>
-```
-
+    <div class="hero-btns">
+      <a href="#cardapio" class="btn btn-cy">Ver Cardápio</a>
+      <a href="#eventos"  class="btn btn-ev">Seu Evento Aqui</a>
+      <a href="https://www.instagram.com/sobrinholounge" target="_blank" class="btn btn-pk">Instagram</a>
+    </div>
   </div>
 
   <div class="hero-addr">
@@ -307,31 +347,104 @@ footer{background:var(--dark);border-top:1px solid rgba(191,95,255,.1);padding:5
 <div class="strip"></div>
 
 <!-- SOBRE -->
-
 <section class="sec sobre-sec" id="sobre">
-  <div class="sobre-grid rv">
-    <div class="sobre-text">
-      <p class="lbl">Nosso espaço</p>
-      <h2 class="ttl">O melhor do<br><span class="hi">Butantã</span> à noite</h2>
+  <div class="sg rv">
+    <div class="st">
+      <p class="slbl">Nosso espaço</p>
+      <h2 class="sttl">O melhor do<br><span class="hi">Butantã</span> à noite</h2>
       <div class="rule"></div>
       <p>O Sobrinho Lounge é o ponto de encontro perfeito para quem busca qualidade, ambiente e estilo. Com uma carta de bebidas premium, Rosh exclusivo e um ambiente que pulsa energia toda noite.</p>
       <p>Das cervejas geladas aos whiskies das melhores marcas — tudo servido com o capricho que você merece. Venha viver a experiência Sobrinho.</p>
       <div class="stats">
-        <div><div class="stat-n">50+</div><div class="stat-l">Opções de bebidas</div></div>
-        <div><div class="stat-n">★ 5</div><div class="stat-l">Experiência</div></div>
-        <div><div class="stat-n">100%</div><div class="stat-l">Premium</div></div>
+        <div><div class="sn">50+</div><div class="sl">Bebidas</div></div>
+        <div><div class="sn">★ 5</div><div class="sl">Experiência</div></div>
+        <div><div class="sn">100%</div><div class="sl">Premium</div></div>
       </div>
     </div>
-    <div class="sobre-box">
-      <div class="sobre-inner">
-        <div class="sb-neon">Sobrinho</div>
-        <div class="sb-addr">
+    <div class="sv">
+      <div class="si">
+        <div class="si-n">Sobrinho</div>
+        <div class="si-ab">
           <div class="al">Endereço</div>
           <div class="av">Rua Raul Saddi, 66</div>
           <div class="as">Butantã · São Paulo, SP</div>
         </div>
-        <a href="https://www.instagram.com/sobrinholounge" target="_blank" class="sb-ig">📸 @sobrinholounge</a>
+        <a href="https://www.instagram.com/sobrinholounge" target="_blank" class="si-ig">📸 @sobrinholounge</a>
       </div>
+    </div>
+  </div>
+</section>
+
+<div class="strip"></div>
+
+<!-- EVENTOS & ANIVERSÁRIOS -->
+<section class="sec eventos-sec" id="eventos">
+  <div class="ev-hd rv">
+    <p class="slbl">Celebre com a gente</p>
+    <h2 class="sttl">Seu <span class="hip">Aniversário</span> &amp; Eventos</h2>
+    <div class="rule rule-pk"></div>
+    <p>Reserve o Sobrinho Lounge para o seu dia especial. Oferecemos condições exclusivas para aniversariantes e grupos — porque sua celebração merece o melhor ambiente do Butantã.</p>
+  </div>
+
+  <div class="ev-cards rv2">
+
+    <!-- CARD 1: Aniversário -->
+    <div class="ev-card highlight">
+      <span class="ev-tag ev-tag-pk">🎂 Mais popular</span>
+      <span class="ev-icon">🎉</span>
+      <div class="ev-name">Pacote Aniversário</div>
+      <div class="ev-desc">A noite toda pensada pra você</div>
+      <ul class="ev-perks">
+        <li>Mesa reservada exclusiva para o aniversariante e convidados</li>
+        <li>Cortesia especial para o aniversariante na chegada</li>
+        <li>Decoração temática com balões no espaço</li>
+        <li>Foto no painel do Sobrinho Lounge</li>
+        <li>Desconto especial no combo de garrafa + Red Bull</li>
+        <li>Prioridade de atendimento toda a noite</li>
+      </ul>
+      <div class="ev-note">*Sujeito à disponibilidade. Reserva antecipada obrigatória. Consumo mínimo a combinar.</div>
+    </div>
+
+    <!-- CARD 2: Evento Privativo -->
+    <div class="ev-card">
+      <span class="ev-tag">🥂 Grupos</span>
+      <span class="ev-icon">🎊</span>
+      <div class="ev-name">Evento em Grupo</div>
+      <div class="ev-desc">Para reunir galera com estilo</div>
+      <ul class="ev-perks">
+        <li>Área reservada para grupos a partir de 10 pessoas</li>
+        <li>Cardápio personalizado com combos exclusivos</li>
+        <li>Atendimento dedicado para o grupo</li>
+        <li>Possibilidade de playlist personalizada</li>
+        <li>Condições especiais de consumo mínimo por pessoa</li>
+      </ul>
+      <div class="ev-note">*Disponível para eventos corporativos, confraternizações e celebrações. Consulte condições.</div>
+    </div>
+
+    <!-- CARD 3: Espaço Privativo -->
+    <div class="ev-card">
+      <span class="ev-tag">🔒 Exclusivo</span>
+      <span class="ev-icon">✨</span>
+      <div class="ev-name">Espaço Privativo</div>
+      <div class="ev-desc">O Lounge inteiro é seu</div>
+      <ul class="ev-perks">
+        <li>Locação do espaço completo nos dias disponíveis</li>
+        <li>Decoração e ambientação personalizadas</li>
+        <li>Sistema de som exclusivo com DJ ou playlist</li>
+        <li>Cardápio e combos sob medida para o evento</li>
+        <li>Equipe completa dedicada ao seu evento</li>
+        <li>Capacidade para grandes grupos</li>
+      </ul>
+      <div class="ev-note">*Consulte disponibilidade e condições comerciais. Reserva com antecedência mínima de 7 dias.</div>
+    </div>
+
+  </div>
+
+  <div class="ev-cta rv">
+    <p>Quer reservar? Entre em contato pelo Instagram ou WhatsApp e nossa equipe cuida de tudo para o seu evento ser inesquecível! 🎉</p>
+    <div class="ev-cta-btns">
+      <a href="https://www.instagram.com/sobrinholounge" target="_blank" class="btn btn-pk">📸 Falar pelo Instagram</a>
+      <a href="#cardapio" class="btn btn-cy">Ver Cardápio</a>
     </div>
   </div>
 </section>
@@ -339,148 +452,135 @@ footer{background:var(--dark);border-top:1px solid rgba(191,95,255,.1);padding:5
 <div class="strip"></div>
 
 <!-- CARDÁPIO -->
-
 <section class="sec menu-sec" id="cardapio">
-  <div class="menu-wrap">
-    <div class="menu-hd rv">
-      <p class="lbl">Cardápio completo</p>
-      <h2 class="ttl">O que <span class="hi">servimos</span></h2>
+  <div class="mw">
+    <div class="mhd rv">
+      <p class="slbl">Cardápio completo</p>
+      <h2 class="sttl">O que <span class="hi">servimos</span></h2>
       <div class="rule"></div>
     </div>
 
-```
-<div class="tabs rv">
-  <button class="tab on"  onclick="sc('sa',this)">Sem Álcool</button>
-  <button class="tab"     onclick="sc('va',this)">Variados</button>
-  <button class="tab"     onclick="sc('ce',this)">Cervejas</button>
-  <button class="tab"     onclick="sc('do',this)">Doses</button>
-  <button class="tab"     onclick="sc('co',this)">Combos</button>
-  <button class="tab"     onclick="sc('ro',this)">Rosh</button>
-</div>
-
-<!-- SEM ÁLCOOL -->
-<div class="cat on" id="sa">
-  <div class="cat-ttl">Sem Álcool</div>
-  <div class="cat-sub">Bebidas não alcoólicas · Refrescantes</div>
-  <div class="ig">
-    <div class="it"><span class="it-n">Água sem gás</span><span class="it-d"></span><span class="it-p">R$ 5</span></div>
-    <div class="it"><span class="it-n">Água com gás</span><span class="it-d"></span><span class="it-p">R$ 6</span></div>
-    <div class="it"><span class="it-n">Coca Cola</span><span class="it-d"></span><span class="it-p">R$ 8</span></div>
-    <div class="it"><span class="it-n">Coca Cola Zero</span><span class="it-d"></span><span class="it-p">R$ 8</span></div>
-    <div class="it"><span class="it-n">Guaraná</span><span class="it-d"></span><span class="it-p">R$ 6</span></div>
-    <div class="it"><span class="it-n">Fanta Uva</span><span class="it-d"></span><span class="it-p">R$ 6</span></div>
-    <div class="it"><span class="it-n">Del Valle</span><span class="it-d"></span><span class="it-p">R$ 8</span></div>
-    <div class="it"><span class="it-n">Red Bull</span><span class="it-d"></span><span class="it-p">R$ 15</span></div>
-    <div class="it"><span class="it-n">Monster Mango</span><span class="it-d"></span><span class="it-p">R$ 15</span></div>
-  </div>
-</div>
-
-<!-- VARIADOS -->
-<div class="cat" id="va">
-  <div class="cat-ttl">Variados</div>
-  <div class="cat-sub">Ice & Especiais</div>
-  <div class="ig">
-    <div class="it"><span class="it-n">Smirnoff Ice</span><span class="it-d"></span><span class="it-p">R$ 15</span></div>
-    <div class="it"><span class="it-n">Skol Beats</span><span class="it-d"></span><span class="it-p">R$ 15</span></div>
-    <div class="it"><span class="it-n">Draft</span><span class="it-d"></span><span class="it-p">R$ 20</span></div>
-  </div>
-</div>
-
-<!-- CERVEJAS -->
-<div class="cat" id="ce">
-  <div class="cat-ttl">Cervejas</div>
-  <div class="cat-sub">Geladas · Premium · Long Neck</div>
-  <div class="ig">
-    <div class="it"><span class="it-n">Heineken 330ml</span><span class="it-d"></span><span class="it-p">R$ 15</span></div>
-    <div class="it"><span class="it-n">Heineken 290ml</span><span class="it-d"></span><span class="it-p">R$ 12</span></div>
-    <div class="it"><span class="it-n">Heineken Zero</span><span class="it-d"></span><span class="it-p">R$ 15</span></div>
-    <div class="it"><span class="it-n">Heineken Lata</span><span class="it-d"></span><span class="it-p">R$ 10</span></div>
-    <div class="it"><span class="it-n">Heineken 600ml</span><span class="it-d"></span><span class="it-p">R$ 20</span></div>
-    <div class="it"><span class="it-n">Corona Long</span><span class="it-d"></span><span class="it-p">R$ 15</span></div>
-    <div class="it"><span class="it-n">Corona Long Zero</span><span class="it-d"></span><span class="it-p">R$ 12</span></div>
-    <div class="it"><span class="it-n">Budweiser Long</span><span class="it-d"></span><span class="it-p">R$ 12</span></div>
-    <div class="it"><span class="it-n">Original 600ml</span><span class="it-d"></span><span class="it-p">R$ 15</span></div>
-    <div class="it"><span class="it-n">Original Lata</span><span class="it-d"></span><span class="it-p">R$ 8</span></div>
-    <div class="it"><span class="it-n">Amstel 600ml</span><span class="it-d"></span><span class="it-p">R$ 15</span></div>
-    <div class="it"><span class="it-n">Skol 600ml</span><span class="it-d"></span><span class="it-p">R$ 12</span></div>
-    <div class="it"><span class="it-n">Skol Lata</span><span class="it-d"></span><span class="it-p">R$ 6</span></div>
-    <div class="it"><span class="it-n">Brahma PuroMalte 600ml</span><span class="it-d"></span><span class="it-p">R$ 12</span></div>
-    <div class="it"><span class="it-n">Brahma Chopp 600ml</span><span class="it-d"></span><span class="it-p">R$ 12</span></div>
-  </div>
-</div>
-
-<!-- DOSES -->
-<div class="cat" id="do">
-  <div class="cat-ttl">Doses</div>
-  <div class="cat-sub">Whiskies · Gins · Vodkas · Servidos com Red Bull</div>
-  <div class="ig">
-    <div class="it"><span class="it-n">Eternity Sabores</span><span class="it-d"></span><span class="it-p">R$ 15</span></div>
-    <div class="it"><span class="it-n">Beefeater + Red Bull</span><span class="it-d"></span><span class="it-p">R$ 35</span></div>
-    <div class="it"><span class="it-n">Tanqueray + Red Bull</span><span class="it-d"></span><span class="it-p">R$ 40</span></div>
-    <div class="it"><span class="it-n">Rock's + Red Bull</span><span class="it-d"></span><span class="it-p">R$ 30</span></div>
-    <div class="it"><span class="it-n">Jack Daniel's + Red Bull</span><span class="it-d"></span><span class="it-p">R$ 40</span></div>
-    <div class="it"><span class="it-n">Jack Daniel's Apple + Red Bull</span><span class="it-d"></span><span class="it-p">R$ 45</span></div>
-    <div class="it"><span class="it-n">Jack Daniel's Honey + Red Bull</span><span class="it-d"></span><span class="it-p">R$ 45</span></div>
-    <div class="it"><span class="it-n">Jack Daniel's Fire + Red Bull</span><span class="it-d"></span><span class="it-p">R$ 45</span></div>
-    <div class="it"><span class="it-n">White Horse + Red Bull</span><span class="it-d"></span><span class="it-p">R$ 30</span></div>
-    <div class="it"><span class="it-n">Ballantines + Red Bull</span><span class="it-d"></span><span class="it-p">R$ 35</span></div>
-    <div class="it"><span class="it-n">Old Parr + Red Bull</span><span class="it-d"></span><span class="it-p">R$ 40</span></div>
-    <div class="it"><span class="it-n">Absolut + Red Bull</span><span class="it-d"></span><span class="it-p">R$ 30</span></div>
-    <div class="it"><span class="it-n">Red Label + Red Bull</span><span class="it-d"></span><span class="it-p">R$ 30</span></div>
-    <div class="it"><span class="it-n">Smirnoff + Red Bull</span><span class="it-d"></span><span class="it-p">R$ 25</span></div>
-  </div>
-</div>
-
-<!-- COMBOS -->
-<div class="cat" id="co">
-  <div class="cat-ttl">Combos</div>
-  <div class="cat-sub">Garrafa + 4 Red Bull · A melhor pedida da noite</div>
-  <div class="cg">
-    <!-- WHISKIES -->
-    <div class="cc"><div class="cc-badge">+ 4 Red Bull</div><div class="cc-n">Red Label</div><div class="cc-d">Johnnie Walker</div><div class="cc-p">R$ 200</div></div>
-    <div class="cc"><div class="cc-badge">+ 4 Red Bull</div><div class="cc-n">Ballantines</div><div class="cc-d">Scotch Whisky</div><div class="cc-p">R$ 170</div></div>
-    <div class="cc"><div class="cc-badge">+ 4 Red Bull</div><div class="cc-n">White Horse</div><div class="cc-d">Blended Scotch</div><div class="cc-p">R$ 165</div></div>
-    <div class="cc"><div class="cc-badge">+ 4 Red Bull</div><div class="cc-n">Old Parr</div><div class="cc-d">Scotch Whisky</div><div class="cc-p">R$ 280</div></div>
-    <div class="cc"><div class="cc-badge">+ 4 Red Bull</div><div class="cc-n">Black Label</div><div class="cc-d">Johnnie Walker 12 anos</div><div class="cc-p">R$ 280</div></div>
-    <div class="cc"><div class="cc-badge">+ 4 Red Bull</div><div class="cc-n">Gold Label</div><div class="cc-d">Johnnie Walker Reserve</div><div class="cc-p">R$ 500</div></div>
-    <!-- GINS -->
-    <div class="cc"><div class="cc-badge">+ 4 Red Bull</div><div class="cc-n">Beefeater Trad</div><div class="cc-d">London Dry Gin</div><div class="cc-p">R$ 200</div></div>
-    <div class="cc"><div class="cc-badge">+ 4 Red Bull</div><div class="cc-n">Beefeater Pink</div><div class="cc-d">London Dry Gin Rosé</div><div class="cc-p">R$ 220</div></div>
-    <div class="cc"><div class="cc-badge">+ 4 Red Bull</div><div class="cc-n">Tanqueray</div><div class="cc-d">London Dry Gin</div><div class="cc-p">R$ 280</div></div>
-    <!-- VODKAS -->
-    <div class="cc"><div class="cc-badge">+ 4 Red Bull</div><div class="cc-n">Absolut Trad</div><div class="cc-d">Vodka Premium</div><div class="cc-p">R$ 180</div></div>
-    <div class="cc"><div class="cc-badge">+ 4 Red Bull</div><div class="cc-n">Absolut Raspberri</div><div class="cc-d">Vodka Framboesa</div><div class="cc-p">R$ 170</div></div>
-    <div class="cc"><div class="cc-badge">+ 4 Red Bull</div><div class="cc-n">Grey Goose</div><div class="cc-d">Vodka Francesa Premium</div><div class="cc-p">R$ 250</div></div>
-    <!-- JACK -->
-    <div class="cc"><div class="cc-badge">+ 4 Red Bull</div><div class="cc-n">Jack Daniel's Trad</div><div class="cc-d">Tennessee Whiskey</div><div class="cc-p">R$ 250</div></div>
-    <div class="cc"><div class="cc-badge">+ 4 Red Bull</div><div class="cc-n">Jack Daniel's Fire</div><div class="cc-d">Cinnamon Whiskey</div><div class="cc-p">R$ 220</div></div>
-    <div class="cc"><div class="cc-badge">+ 4 Red Bull</div><div class="cc-n">Jack Daniel's Apple</div><div class="cc-d">Green Apple Whiskey</div><div class="cc-p">R$ 260</div></div>
-  </div>
-</div>
-
-<!-- ROSH -->
-<div class="cat" id="ro">
-  <div class="cat-ttl">Rosh</div>
-  <div class="cat-sub">Experiência premium de narguilé</div>
-  <div class="rosh-box">
-    <span class="rosh-em">💨</span>
-    <div class="rosh-t">Rosh Premium</div>
-    <div class="rosh-s">Sabores exclusivos · Experiência única</div>
-    <div class="rosh-ps">
-      <div class="rp"><div class="rp-l">Rosh</div><div class="rp-v">R$ 30</div></div>
-      <div class="rp"><div class="rp-l">Rosh Adicional</div><div class="rp-v">R$ 25</div></div>
+    <div class="tabs rv">
+      <button class="tab on" onclick="sc('sa',this)">Sem Álcool</button>
+      <button class="tab"    onclick="sc('va',this)">Variados</button>
+      <button class="tab"    onclick="sc('ce',this)">Cervejas</button>
+      <button class="tab"    onclick="sc('do',this)">Doses</button>
+      <button class="tab"    onclick="sc('co',this)">Combos</button>
+      <button class="tab"    onclick="sc('ro',this)">Rosh</button>
     </div>
-  </div>
-</div>
-```
 
-  </div><!-- /menu-wrap -->
+    <!-- SEM ÁLCOOL -->
+    <div class="cat on" id="sa">
+      <div class="ct">Sem Álcool</div><div class="cs">Bebidas não alcoólicas · Refrescantes</div>
+      <div class="ig">
+        <div class="it"><span class="itn">Água sem gás</span><span class="itd"></span><span class="itp">R$ 5</span></div>
+        <div class="it"><span class="itn">Água com gás</span><span class="itd"></span><span class="itp">R$ 6</span></div>
+        <div class="it"><span class="itn">Coca Cola</span><span class="itd"></span><span class="itp">R$ 8</span></div>
+        <div class="it"><span class="itn">Coca Cola Zero</span><span class="itd"></span><span class="itp">R$ 8</span></div>
+        <div class="it"><span class="itn">Guaraná</span><span class="itd"></span><span class="itp">R$ 6</span></div>
+        <div class="it"><span class="itn">Fanta Uva</span><span class="itd"></span><span class="itp">R$ 6</span></div>
+        <div class="it"><span class="itn">Del Valle</span><span class="itd"></span><span class="itp">R$ 8</span></div>
+        <div class="it"><span class="itn">Red Bull</span><span class="itd"></span><span class="itp">R$ 15</span></div>
+        <div class="it"><span class="itn">Monster Mango</span><span class="itd"></span><span class="itp">R$ 15</span></div>
+      </div>
+    </div>
+
+    <!-- VARIADOS -->
+    <div class="cat" id="va">
+      <div class="ct">Variados</div><div class="cs">Ice & Especiais</div>
+      <div class="ig">
+        <div class="it"><span class="itn">Smirnoff Ice</span><span class="itd"></span><span class="itp">R$ 15</span></div>
+        <div class="it"><span class="itn">51 Ice</span><span class="itd"></span><span class="itp">R$ 15</span></div>
+        <div class="it"><span class="itn">Skol Beats</span><span class="itd"></span><span class="itp">R$ 15</span></div>
+        <div class="it"><span class="itn">Draft</span><span class="itd"></span><span class="itp">R$ 20</span></div>
+      </div>
+    </div>
+
+    <!-- CERVEJAS -->
+    <div class="cat" id="ce">
+      <div class="ct">Cervejas</div><div class="cs">Geladas · Premium · Long Neck</div>
+      <div class="ig">
+        <div class="it"><span class="itn">Heineken 330ml</span><span class="itd"></span><span class="itp">R$ 15</span></div>
+        <div class="it"><span class="itn">Heineken 290ml</span><span class="itd"></span><span class="itp">R$ 12</span></div>
+        <div class="it"><span class="itn">Heineken Zero</span><span class="itd"></span><span class="itp">R$ 15</span></div>
+        <div class="it"><span class="itn">Heineken Lata</span><span class="itd"></span><span class="itp">R$ 10</span></div>
+        <div class="it"><span class="itn">Heineken 600ml</span><span class="itd"></span><span class="itp">R$ 20</span></div>
+        <div class="it"><span class="itn">Corona Long</span><span class="itd"></span><span class="itp">R$ 15</span></div>
+        <div class="it"><span class="itn">Corona Long Zero</span><span class="itd"></span><span class="itp">R$ 12</span></div>
+        <div class="it"><span class="itn">Budweiser Long</span><span class="itd"></span><span class="itp">R$ 12</span></div>
+        <div class="it"><span class="itn">Original 600ml</span><span class="itd"></span><span class="itp">R$ 15</span></div>
+        <div class="it"><span class="itn">Original Lata</span><span class="itd"></span><span class="itp">R$ 8</span></div>
+        <div class="it"><span class="itn">Amstel 600ml</span><span class="itd"></span><span class="itp">R$ 15</span></div>
+        <div class="it"><span class="itn">Skol 600ml</span><span class="itd"></span><span class="itp">R$ 12</span></div>
+        <div class="it"><span class="itn">Skol Lata</span><span class="itd"></span><span class="itp">R$ 6</span></div>
+        <div class="it"><span class="itn">Brahma PuroMalte 600ml</span><span class="itd"></span><span class="itp">R$ 12</span></div>
+        <div class="it"><span class="itn">Brahma Chopp 600ml</span><span class="itd"></span><span class="itp">R$ 12</span></div>
+      </div>
+    </div>
+
+    <!-- DOSES -->
+    <div class="cat" id="do">
+      <div class="ct">Doses</div><div class="cs">Whiskies · Gins · Vodkas · Com Red Bull</div>
+      <div class="ig">
+        <div class="it"><span class="itn">Eternity Sabores</span><span class="itd"></span><span class="itp">R$ 15</span></div>
+        <div class="it"><span class="itn">Beefeater + Red Bull</span><span class="itd"></span><span class="itp">R$ 35</span></div>
+        <div class="it"><span class="itn">Tanqueray + Red Bull</span><span class="itd"></span><span class="itp">R$ 40</span></div>
+        <div class="it"><span class="itn">Rock's + Red Bull</span><span class="itd"></span><span class="itp">R$ 30</span></div>
+        <div class="it"><span class="itn">Jack Daniel's + Red Bull</span><span class="itd"></span><span class="itp">R$ 40</span></div>
+        <div class="it"><span class="itn">Jack Daniel's Apple + Red Bull</span><span class="itd"></span><span class="itp">R$ 45</span></div>
+        <div class="it"><span class="itn">Jack Daniel's Honey + Red Bull</span><span class="itd"></span><span class="itp">R$ 45</span></div>
+        <div class="it"><span class="itn">Jack Daniel's Fire + Red Bull</span><span class="itd"></span><span class="itp">R$ 45</span></div>
+        <div class="it"><span class="itn">White Horse + Red Bull</span><span class="itd"></span><span class="itp">R$ 30</span></div>
+        <div class="it"><span class="itn">Ballantines + Red Bull</span><span class="itd"></span><span class="itp">R$ 35</span></div>
+        <div class="it"><span class="itn">Old Parr + Red Bull</span><span class="itd"></span><span class="itp">R$ 40</span></div>
+        <div class="it"><span class="itn">Absolut + Red Bull</span><span class="itd"></span><span class="itp">R$ 30</span></div>
+        <div class="it"><span class="itn">Red Label + Red Bull</span><span class="itd"></span><span class="itp">R$ 30</span></div>
+        <div class="it"><span class="itn">Smirnoff + Red Bull</span><span class="itd"></span><span class="itp">R$ 25</span></div>
+      </div>
+    </div>
+
+    <!-- COMBOS -->
+    <div class="cat" id="co">
+      <div class="ct">Combos</div><div class="cs">Garrafa + 4 Red Bull · A melhor pedida da noite</div>
+      <div class="cg">
+        <div class="cc"><div class="cc-b">+ 4 Red Bull</div><div class="cc-n">White Horse</div><div class="cc-d">Blended Scotch</div><div class="cc-p">R$ 165</div></div>
+        <div class="cc"><div class="cc-b">+ 4 Red Bull</div><div class="cc-n">Absolut Raspberri</div><div class="cc-d">Vodka Framboesa</div><div class="cc-p">R$ 170</div></div>
+        <div class="cc"><div class="cc-b">+ 4 Red Bull</div><div class="cc-n">Absolut Trad</div><div class="cc-d">Vodka Premium</div><div class="cc-p">R$ 180</div></div>
+        <div class="cc"><div class="cc-b">+ 4 Red Bull</div><div class="cc-n">Ballantines</div><div class="cc-d">Scotch Whisky</div><div class="cc-p">R$ 170</div></div>
+        <div class="cc"><div class="cc-b">+ 4 Red Bull</div><div class="cc-n">Red Label</div><div class="cc-d">Johnnie Walker</div><div class="cc-p">R$ 200</div></div>
+        <div class="cc"><div class="cc-b">+ 4 Red Bull</div><div class="cc-n">Beefeater Trad</div><div class="cc-d">London Dry Gin</div><div class="cc-p">R$ 200</div></div>
+        <div class="cc"><div class="cc-b">+ 4 Red Bull</div><div class="cc-n">Beefeater Pink</div><div class="cc-d">Gin Rosé</div><div class="cc-p">R$ 220</div></div>
+        <div class="cc"><div class="cc-b">+ 4 Red Bull</div><div class="cc-n">Jack Daniel's Fire</div><div class="cc-d">Cinnamon Whiskey</div><div class="cc-p">R$ 220</div></div>
+        <div class="cc"><div class="cc-b">+ 4 Red Bull</div><div class="cc-n">Jack Daniel's Trad</div><div class="cc-d">Tennessee Whiskey</div><div class="cc-p">R$ 250</div></div>
+        <div class="cc"><div class="cc-b">+ 4 Red Bull</div><div class="cc-n">Grey Goose</div><div class="cc-d">Vodka Francesa</div><div class="cc-p">R$ 250</div></div>
+        <div class="cc"><div class="cc-b">+ 4 Red Bull</div><div class="cc-n">Jack Daniel's Apple</div><div class="cc-d">Apple Whiskey</div><div class="cc-p">R$ 260</div></div>
+        <div class="cc"><div class="cc-b">+ 4 Red Bull</div><div class="cc-n">Old Parr</div><div class="cc-d">Scotch Premium</div><div class="cc-p">R$ 280</div></div>
+        <div class="cc"><div class="cc-b">+ 4 Red Bull</div><div class="cc-n">Tanqueray</div><div class="cc-d">London Dry Gin</div><div class="cc-p">R$ 280</div></div>
+        <div class="cc"><div class="cc-b">+ 4 Red Bull</div><div class="cc-n">Black Label</div><div class="cc-d">Johnnie Walker 12 anos</div><div class="cc-p">R$ 280</div></div>
+        <div class="cc"><div class="cc-b">+ 4 Red Bull</div><div class="cc-n">Gold Label</div><div class="cc-d">Johnnie Walker Reserve</div><div class="cc-p">R$ 500</div></div>
+      </div>
+    </div>
+
+    <!-- ROSH -->
+    <div class="cat" id="ro">
+      <div class="ct">Rosh</div><div class="cs">Experiência premium de narguilé</div>
+      <div class="rb">
+        <span class="re">💨</span>
+        <div class="rt">Rosh Premium</div>
+        <div class="rs">Sabores exclusivos · Experiência única</div>
+        <div class="rps">
+          <div class="rp"><div class="rpl">Rosh</div><div class="rpv">R$ 30</div></div>
+          <div class="rp"><div class="rpl">Rosh Adicional</div><div class="rpv">R$ 25</div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
 </section>
 
 <div class="strip"></div>
 
 <!-- FOOTER -->
-
 <footer id="contato">
   <div class="fg">
     <div>
@@ -494,26 +594,110 @@ footer{background:var(--dark);border-top:1px solid rgba(191,95,255,.1);padding:5
     </div>
     <div class="fc">
       <h4>Redes Sociais</h4>
-      <a href="https://www.instagram.com/sobrinholounge" target="_blank" class="pk">📸 @sobrinholounge</a>
-      <p style="margin-top:14px;font-size:.7rem;color:rgba(255,255,255,.22);">Siga para novidades,<br>eventos e promoções.</p>
+      <a href="https://www.instagram.com/sobrinholounge" target="_blank" class="pk-a">📸 @sobrinholounge</a>
+      <p style="margin-top:12px;font-size:.68rem;color:rgba(255,255,255,.2);">Siga para novidades,<br>eventos e promoções.</p>
     </div>
   </div>
-  <div class="fbot">© 2025 Sobrinho Lounge — Todos os direitos reservados &nbsp;·&nbsp; Butantã, São Paulo</div>
+  <div class="fbot">© 2025 Sobrinho Lounge — Todos os direitos reservados · Butantã, São Paulo</div>
 </footer>
 
 <script>
-  window.addEventListener('scroll',()=>{
-    document.getElementById('nav').classList.toggle('solid',scrollY>50)
-  });
-  function sc(id,btn){
-    document.querySelectorAll('.cat').forEach(c=>c.classList.remove('on'));
-    document.querySelectorAll('.tab').forEach(b=>b.classList.remove('on'));
-    document.getElementById(id).classList.add('on');
-    btn.classList.add('on');
-  }
-  const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target)}})},{threshold:.1});
-  document.querySelectorAll('.rv').forEach(r=>obs.observe(r));
-</script>
+/* ── NAV scroll ── */
+window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('solid',scrollY>50));
 
+/* ── Tabs ── */
+function sc(id,btn){
+  document.querySelectorAll('.cat').forEach(c=>c.classList.remove('on'));
+  document.querySelectorAll('.tab').forEach(b=>b.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+  btn.classList.add('on');
+}
+
+/* ── Reveal ── */
+const ro=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');ro.unobserve(e.target)}})},{threshold:.08});
+document.querySelectorAll('.rv,.rv2').forEach(r=>ro.observe(r));
+
+/* ── SMOKE CANVAS ── */
+(function(){
+  const cv=document.getElementById('smokeCanvas');
+  const ctx=cv.getContext('2d');
+  let W,H,particles=[];
+
+  function resize(){
+    W=cv.width=cv.offsetWidth;
+    H=cv.height=cv.offsetHeight;
+  }
+  resize();
+  window.addEventListener('resize',resize);
+
+  const COLORS=[
+    [192,96,255],   // purple
+    [0,216,255],    // cyan
+    [255,32,144],   // pink
+    [255,116,0],    // orange
+    [255,255,255],  // white
+  ];
+
+  function mkParticle(){
+    const col=COLORS[Math.floor(Math.random()*COLORS.length)];
+    return{
+      x:W*(.2+Math.random()*.6),
+      y:H*(.6+Math.random()*.4),
+      r:30+Math.random()*80,
+      vx:(Math.random()-.5)*.25,
+      vy:-(0.25+Math.random()*0.55),
+      alpha:0,
+      maxAlpha:.045+Math.random()*.055,
+      fadeIn:true,
+      rot:Math.random()*Math.PI*2,
+      rotV:(Math.random()-.5)*.004,
+      col,life:0,maxLife:220+Math.random()*180
+    };
+  }
+
+  for(let i=0;i<22;i++){
+    const p=mkParticle();
+    p.life=Math.random()*p.maxLife;
+    p.alpha=p.maxAlpha*(p.life/p.maxLife);
+    particles.push(p);
+  }
+
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    particles.forEach((p,i)=>{
+      p.life++;
+      p.x+=p.vx;
+      p.y+=p.vy;
+      p.r+=.12;
+      p.rot+=p.rotV;
+
+      const pct=p.life/p.maxLife;
+      if(pct<.3) p.alpha=p.maxAlpha*(pct/.3);
+      else p.alpha=p.maxAlpha*(1-((pct-.3)/.7));
+
+      if(p.life>=p.maxLife) particles[i]=mkParticle();
+
+      ctx.save();
+      ctx.translate(p.x,p.y);
+      ctx.rotate(p.rot);
+      const g=ctx.createRadialGradient(0,0,0,0,0,p.r);
+      g.addColorStop(0,`rgba(${p.col[0]},${p.col[1]},${p.col[2]},${p.alpha})`);
+      g.addColorStop(.5,`rgba(${p.col[0]},${p.col[1]},${p.col[2]},${p.alpha*.35})`);
+      g.addColorStop(1,`rgba(${p.col[0]},${p.col[1]},${p.col[2]},0)`);
+      ctx.fillStyle=g;
+      ctx.beginPath();
+      ctx.ellipse(0,0,p.r,p.r*.7,0,0,Math.PI*2);
+      ctx.fill();
+      ctx.restore();
+    });
+
+    // add new particles occasionally
+    if(particles.length<28&&Math.random()<.03) particles.push(mkParticle());
+
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+</script>
 </body>
 </html>
